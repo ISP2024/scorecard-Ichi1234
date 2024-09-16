@@ -28,6 +28,9 @@ class Scorecard:
         """Iniiialize a new Scorecard."""
         self.scores : list[int] = []
 
+    def __len__(self) -> int:
+        return len(self.scores)
+
     def add_score(self, score: float):
         """Add a score to the Scorecard."""
         self.scores.append(score)
