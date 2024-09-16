@@ -1,4 +1,4 @@
-
+from typing import Iterable
 
 """
 This code contains common errors that can by detected 
@@ -30,6 +30,9 @@ class Scorecard:
 
     def __len__(self) -> int:
         return len(self.scores)
+
+    def __iter__(self) -> Iterable:
+        return iter(self.scores)
 
     def add_score(self, score: float):
         """Add a score to the Scorecard."""
