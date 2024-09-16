@@ -24,17 +24,22 @@ Observe how the type hint helps it perform static checking.
 class Scorecard:
     """Accumulate scores and compute their average."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Iniiialize a new Scorecard."""
-        self.scores : list[int] = []
+        self.scores : list[float] = []
 
     def __len__(self) -> int:
         return len(self.scores)
 
-    def __iter__(self) -> Iterable:
+    def __iter__(self) -> Iterable[float]:
         return iter(self.scores)
 
-    def add_score(self, score: float):
+    def __getitem__(self, index: int) -> float:
+        return self.scores[index]
+
+
+
+    def add_score(self, score: float) -> None:
         """Add a score to the Scorecard."""
         self.scores.append(score)
 
@@ -43,7 +48,7 @@ class Scorecard:
         return sum(self.scores)/max(1,len(self.scores))
 
 
-def print_scores(score_card: Scorecard):
+def print_scores(score_card: list[float]) -> None:
     """Print statistics for the scorecard and the actual scores."""
 
     # What changes to Scorecard are needed in order to make this code work?
@@ -59,7 +64,7 @@ def ordinal(num: int) -> str:
 
     For examples: ordinal(1) is '1st', ordinal(2) is '2nd'.
     """
-    suffixes: dict[int:str] = {1: "st", 2: "nd", 3: "rd"}
+    suffixes: dict[int, str] = {1: "st", 2: "nd", 3: "rd"}
     return str(num) + suffixes.get(num, "th")
 
 
@@ -74,4 +79,4 @@ if __name__ == "__main__":
 
     print(f"The average is {scorecard.average()}")
 
-    print_scores(scorecard)
+    print_scores(scorecard.scores)
