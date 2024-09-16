@@ -1,3 +1,5 @@
+
+
 """
 This code contains common errors that can by detected 
 by static type checking -- if the type is known!
@@ -46,7 +48,7 @@ def print_scores(score_card):
         print(score)
 
 
-def ordinal(num):
+def ordinal(num: int) -> str:
     """Return the ordinal value of an integer; works for numbers up to 20.
 
     For examples: ordinal(1) is '1st', ordinal(2) is '2nd'.
